@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PISTACHIO PLUS · 开心果行李箱系列 | ITO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --ito-black: #111111;
+            --ito-green: #2D8B6F;
+            --ito-green-light: #DCFCE7;
+            --ito-gray-100: #FAFAFA;
+            --ito-gray-200: #F5F5F5;
+            --ito-gray-300: #E5E7EB;
+            --ito-gray-500: #666666;
+            --ito-gray-700: #999999;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ito-gray-100);
+            color: var(--ito-black);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+            border-bottom: 1px solid var(--ito-gray-300);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background-color: rgba(255,255,255,0.92);
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 32px 0;
+        }
+
+        .brand-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-align: center;
+            color: var(--ito-black);
+        }
+
+        .brand-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: var(--ito-gray-500);
+            margin-top: 4px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Tab 切换 */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .tab-btn {
+            padding: 12px 40px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ito-gray-500);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+            letter-spacing: 1px;
+        }
+
+        .tab-btn:hover { color: var(--ito-black); }
+
+        .tab-btn.active {
+            color: var(--ito-black);
+            font-weight: 600;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 3px;
+            background: var(--ito-green);
+            border-radius: 2px;
+        }
+
+        .tab-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--ito-gray-300);
+            align-self: center;
+            margin: 0 8px;
+        }
+
+        /* ===== Main Layout ===== */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* 左侧导航 */
+        .nav-sidebar {
+            width: 280px;
+            min-width: 280px;
+            background: #FFFFFF;
+            border-right: 1px solid var(--ito-gray-300);
+            padding: 32px 0;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+            position: sticky;
+            top: 140px;
+        }
+
+        .nav-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ito-gray-700);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 24px 16px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 24px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border-left: 3px solid transparent;
+            color: var(--ito-gray-500);
+            font-size: 14.5px;
+            font-weight: 400;
+        }
+
+        .nav-item:hover {
+            background: var(--ito-gray-100);
+            color: var(--ito-black);
+        }
+
+        .nav-item.active {
+            background: var(--ito-green-light);
+            border-left-color: var(--ito-green);
+            color: var(--ito-black);
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--ito-gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition-smooth);
+            color: var(--ito-gray-500);
+        }
+
+        .nav-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 1.8;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-item.active .nav-icon {
+            background: var(--ito-green);
+        }
+
+        .nav-item.active .nav-icon svg {
+            stroke: #FFFFFF;
+        }
+
+        .nav-number {
+            font-size: 11px;
+            color: var(--ito-gray-700);
+            font-weight: 600;
+            min-width: 20px;
+        }
+
+        /* 右侧内容区 */
+        .content-area {
+            flex: 1;
+            padding: 40px 48px;
+            overflow-y: auto;
+        }
+
+        /* 图片展示 */
+        .image-stage {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--ito-gray-200);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+            position: relative;
+            margin-bottom: 36px;
+        }
+
+        /* 双图并排布局 */
+        .image-stage.dual-image {
+            display: flex;
+            gap: 0;
+            aspect-ratio: auto;
+            min-height: 400px;
+        }
+
+        .dual-image-item {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-right: 2px solid #fff;
+        }
+
+        .dual-image-item:last-child {
+            border-right: none;
+        }
+
+        .dual-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .dual-label {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 14px;
+            background: rgba(17,17,17,0.75);
+            color: #fff;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            backdrop-filter: blur(6px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .image-stage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--ito-gray-700);
+            gap: 12px;
+        }
+
+        .image-placeholder svg {
+            width: 56px;
+            height: 56px;
+            opacity: 0.3;
+        }
+
+        .image-placeholder span {
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* 信息卡片 */
+        .info-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 36px 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            animation: fadeSlideUp 0.5s ease both;
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .module-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .module-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: var(--ito-green-light);
+            color: var(--ito-green);
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .module-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--ito-black);
+            letter-spacing: 1px;
+        }
+
+        .module-desc {
+            font-size: 15.5px;
+            line-height: 1.85;
+            color: var(--ito-gray-500);
+            margin-bottom: 28px;
+        }
+
+        .design-intent {
+            background: linear-gradient(135deg, var(--ito-gray-100) 0%, #f0fdf4 100%);
+            border-radius: 12px;
+            padding: 20px 24px;
+            border-left: 4px solid var(--ito-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .design-intent::before {
+            content: '"';
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            font-size: 64px;
+            color: var(--ito-green);
+            opacity: 0.08;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .design-intent-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ito-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .design-intent-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--ito-gray-500);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 特性标签 */
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #FFFFFF;
+            border: 1px solid var(--ito-gray-300);
+            border-radius: 20px;
+            font-size: 12.5px;
+            color: var(--ito-gray-500);
+            transition: var(--transition-smooth);
+        }
+
+        .feature-tag:hover {
+            border-color: var(--ito-green);
+            color: var(--ito-green);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px;
+            color: var(--ito-gray-700);
+            font-size: 13px;
+            border-top: 1px solid var(--ito-gray-300);
+            background: #FFFFFF;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 6px;
+            color: var(--ito-black);
+            margin-bottom: 4px;
+        }
+
+        /* Fade 动画 */
+        .fade-enter { animation: fadeIn 0.45s ease both; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 导航项入场动画 */
+        .nav-item { animation: navItemIn 0.35s ease both; }
+        @keyframes navItemIn {
+            from { opacity: 0; transform: translateX(-12px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--ito-gray-300); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--ito-gray-500); }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; }
+            .nav-sidebar {
+                width: 100%;
+                min-width: unset;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--ito-gray-300);
+                padding: 20px 0;
+            }
+            .nav-sidebar .nav-list {
+                display: flex;
+                overflow-x: auto;
+                gap: 4px;
+                padding: 0 16px;
+            }
+            .nav-item {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 10px 18px;
+                border-radius: 8px;
+                background: var(--ito-gray-100);
+            }
+            .nav-item.active {
+                border-left: none;
+                border-bottom-color: var(--ito-green);
+                background: var(--ito-green-light);
+            }
+            .nav-icon { display: none; }
+            .nav-section-title { display: none; }
+            .content-area { padding: 24px 20px; }
+            .info-card { padding: 24px; }
+            .module-title { font-size: 22px; }
+            .header-inner { padding: 20px 16px 0; }
+            .brand-title { font-size: 24px; letter-spacing: 2px; }
+        }
+
+        /* 图片加载状态 */
+        .img-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ito-gray-200);
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--ito-gray-300);
+            border-top-color: var(--ito-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* 规格表格 */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .spec-table th {
+            text-align: left;
+            padding: 10px 16px;
+            background: var(--ito-gray-100);
+            color: var(--ito-gray-500);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--ito-gray-300);
+        }
+
+        .spec-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--ito-gray-300);
+            color: var(--ito-gray-500);
+        }
+
+        .spec-table tr:last-child td { border-bottom: none; }
+        .spec-table tr:hover td { background: var(--ito-gray-100); }
+
+        /* 进度指示器 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--ito-green);
+            z-index: 1000;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* 键盘导航提示 */
+        .kbd-hint {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(17,17,17,0.85);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 200;
+        }
+
+        .kbd-hint.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .kbd-key {
+            display: inline-block;
+            padding: 2px 7px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 进度条 -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-inner">
+        <h1 class="brand-title">ITO PISTACHIO PLUS</h1>
+        <p class="brand-subtitle">开心果系列行李箱</p>
+
+        <!-- 尺寸Tab -->
+        <div class="tab-container">
+            <button class="tab-btn active" data-size="20" onclick="switchSize('20')">
+                20寸 登机箱
+            </button>
+            <div class="tab-divider"></div>
+            <button class="tab-btn" data-size="26" onclick="switchSize('26')">
+                26/30寸 托运箱
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- 主内容 -->
+<main class="main-container">
+
+    <!-- 左侧导航 -->
+    <aside class="nav-sidebar" id="navSidebar">
+        <div class="nav-section-title">功能模块</div>
+        <nav class="nav-list" id="navList"><!-- JS动态渲染 --></nav>
+    </aside>
+
+    <!-- 右侧内容 -->
+    <section class="content-area" id="contentArea">
+        <div class="image-stage" id="imageStage">
+            <!-- JS动态渲染 -->
+        </div>
+        <div class="info-card" id="infoCard">
+            <!-- JS动态渲染 -->
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-brand">ITO</div>
+    <p>Designed for Travelers · 轻熟致享 · 家庭出行</p>
+</footer>
+
+<!-- 键盘提示 -->
+<div class="kbd-hint" id="kbdHint">
+    按 <span class="kbd-key">↑</span> <span class="kbd-key">↓</span> 切换模块 &nbsp; <span class="kbd-key">Esc</span> 关闭
+</div>
+
+<script>
+// ============================================================
+// 数据层：PISTACHIO PLUS 完整卖点配置
+// ============================================================
+
+const PRODUCT_DATA = {
+    "20": {
+        sizeLabel: "20寸 登机箱",
+        sizeDesc: "商务出行 · 短途旅行",
+        modules: [
+            {
+                id: "pp20-structure",
+                icon: "package",
+                number: "01",
+                title: "独立双仓结构",
+                desc: "前仓与主仓完全独立设计，两个空间互不干扰。前仓专为电子设备与快取物品设计，主仓专注行李衣物收纳。这种分区逻辑完美匹配登机场景——安检时只需打开前仓取出电脑，无需暴露主仓私人物品。",
+                designIntent: "针对高频登机用户的使用痛点，将「电脑快取」与「衣物收纳」物理隔离，避免每次取电脑都要打开整个箱子。",
+                tags: ["独立双仓", "登机友好", "隐私保护"],
+                image: "产品卖点示意图/20英寸登机箱/独立双仓结构/ScreenShot_2026-05-13_141654_838.png",
+                placeholder: "PP20 — 整体外观 + 前仓/主仓分区示意图"
+            },
+            {
+                id: "pp20-front-compartment",
+                icon: "laptop",
+                number: "02",
+                title: "前仓电脑快取区",
+                desc: "前仓配备专用电脑隔层，可容纳16英寸游戏笔记本电脑（如联想拯救者等大尺寸机型），同时设有独立的平板电脑隔层。采用加厚绒布内衬保护设备表面免受划伤，魔术贴固定扣确保设备在运输中稳固不移位。",
+                designIntent: "商务客群的核心诉求是「快速存取电脑」。前仓独立开口意味着在咖啡厅、机场 lounge 可以优雅地取出电脑工作，而不需要把行李箱完全摊开。",
+                tags: ["16寸笔记本", "平板隔层", "魔术贴固定", "绒布保护"],
+                image: "产品卖点示意图/20英寸登机箱/前仓电脑快取区/ScreenShot_2026-05-13_141730_396.png",
+                placeholder: "PP20 — 前仓内部：电脑隔层 + 平板隔层细节图"
+            },
+            {
+                id: "pp20-main-cabin",
+                icon: "archive",
+                number: "03",
+                title: "主仓收纳系统",
+                desc: "主仓采用双U框拉链大开口设计，最大化开口角度让打包一目了然。内部配有一字拉链网布袋，适合收纳洗漱包、内衣等需要固定的物品。U框结构保证箱体强度，即使满载也不会变形。",
+                designIntent: "主仓的使命是「装得多且好找」。双U框开口比传统单拉链多出近40%的开口面积，配合网布袋实现分类收纳，告别翻找焦虑。",
+                tags: ["双U框开口", "一字网布袋", "大容量"],
+                image: "产品卖点示意图/20英寸登机箱/主仓收纳系统/ScreenShot_2026-05-13_141856_520.png",
+                placeholder: "PP20 — 主仓内部：双U框 + 一字网布袋"
+            },
+            {
+                id: "pp20-lock",
+                icon: "key-round",
+                number: "04",
+                title: "PEBBLE锁具系统",
+                desc: "主仓配备ITO经典PEBBLE锁，圆润鹅卵石造型兼具美观与手感。TSA海关密码锁设计，国际出行无忧。一键开启/闭合操作流畅，锁体与箱面齐平不凸起，避免刮蹭。",
+                designIntent: "PEBBLE锁是ITO的标志性设计语言。圆润造型呼应「开心果」的产品命名意象，同时在功能性上做到零凸起、防刮蹭。",
+                tags: ["TSA海关锁", "PEBBLE设计", "一体齐平"],
+                image: "产品卖点示意图/20英寸登机箱/PEBBLE锁具系统/ScreenShot_2026-05-13_141919_296.png",
+                placeholder: "PP20 — PEBBLE锁具特写"
+            },
+            {
+                id: "pp20-quick-access",
+                icon: "zap",
+                number: "05",
+                title: "前盖快取口袋",
+                desc: "前仓外部设有多功能快取区域——网布袋适合存放机票、护照、登机牌等差旅证件；开放口袋可放置充电器、充电宝、数据线等数码配件。所有快取物品触手可及，无需翻开任何拉链。",
+                designIntent: "从值机到安检到登机，至少需要掏出5次证件和电子配件。快取口袋把这些高频物品集中在最外层，减少每一次的寻找时间。",
+                tags: ["证件网袋", "配件口袋", "触手可及"],
+                image: "产品卖点示意图/20英寸登机箱/前盖快取口袋/ScreenShot_2026-05-13_141944_677.png",
+                placeholder: "PP20 — 前盖快取区：网布袋 + 开放口袋"
+            }
+        ],
+        specs: [
+            ["尺寸", "20寸（登机规格）"],
+            ["适用场景", "商务出差、短途旅行（1-3天）"],
+            ["电脑兼容", "最高16英寸笔记本电脑"],
+            ["锁具类型", "ITO PEBBLE TSA海关锁"],
+            ["开口方式", "前仓独立开口 + 主仓双U框"]
+        ]
+    },
+
+    "26": {
+        sizeLabel: "26/30寸 托运箱",
+        sizeDesc: "家庭出行 · 长途旅行",
+        modules: [
+            {
+                id: "pp26-trolley",
+                icon: "move-vertical",
+                number: "01",
+                title: "顶部拉杆系统",
+                desc: "顶部一体化拉杆插袋系统，多段可调节铝合金拉杆嵌入箱体凹槽内，收起时与箱面完全齐平。插袋区域同时可作为临时提手使用，方便搬运过程中抓握。",
+                designIntent: "托运场景下箱子更重，拉杆系统的承重性和手感至关重要。嵌入式设计避免运输中勾挂，多段调节适应不同身高的使用者。",
+                tags: ["多段铝杆", "嵌入齐平", "提手二合一"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/顶部拉杆系统/ScreenShot_2026-05-13_141437_165.png",
+                placeholder: "PP26/30 — 顶部拉杆插袋系统整体图"
+            },
+            {
+                id: "pp26-customs-lock",
+                icon: "shield-check",
+                number: "02",
+                title: "分体集成海关锁",
+                desc: "ITO独创分体集成海关锁系统——一个锁体控制两套开合机制：<b>上拨</b>弹开中间拉片（中开模式）；<b>下拨</b>弹开前盖拉片（前开模式）。TSA认证海关密码锁，国际托运无忧。双拨杆机械结构清晰直观，首次使用也能快速理解。",
+                designIntent: "这是整个产品最大的创新点。传统行李箱只有一种打开方式，而双模式设计让它能同时满足「狭小空间前开」和「传统全开打包」两种截然不同的使用场景。",
+                tags: ["上拨=中开", "下拨=前开", "TSA认证", "双模式核心"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/分体集成海关锁/00e438eed3e045e0b19405ef5a69ff5c.png",
+                placeholder: "PP26/30 — 分体集成海关锁：上拨/下拨示意"
+            },
+            {
+                id: "pp26-front-deep-cabin",
+                icon: "door-open",
+                number: "03",
+                title: "前盖深仓通仓设计",
+                desc: "通过海关锁下拨解锁后，前盖可完整掀开，露出超大的前仓通仓空间。通仓深度充分利用箱体厚度，形成类似「前置行李舱」的收纳区域。特别适合在酒店房间狭窄、衣柜空间有限时，直接从前方取放物品而无需把箱子完全平躺。",
+                designIntent: "真实旅行痛点：酒店房间往往没有足够的空间把行李箱完全打平。前盖通仓等于给箱子加了一个「前置抽屉」，站着就能完成大部分收纳动作。",
+                tags: ["前盖深仓", "站立取物", "酒店友好"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/前盖深仓通仓设计/b1e6e465e4614091864c10a87b950cce.png",
+                placeholder: "PP26/30 — 前盖打开后的深仓通仓状态"
+            },
+            {
+                id: "pp26-uframe-layer",
+                icon: "shield",
+                number: "04",
+                title: "置顶U框隐私层",
+                desc: "在前盖通仓的顶部设置了一层U框拉链私密空间，形成一个「仓中仓」结构。这一层专门放置需要隐私保护的贵重物品（钱包、首饰、文档），或需要高频快取的物品（手机、耳机、钥匙）。内置一字拉链网袋用于小件固定。",
+                designIntent: "通仓虽然方便但缺乏隐私。U框隐私层在「开放便捷」和「隐私安全」之间找到了平衡点——常用物品放在外面，贵重物品藏在里面。",
+                tags: ["仓中仓", "隐私保护", "贵重物品", "快取层"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/置顶U框隐私层/ScreenShot_2026-05-13_140221_028.png",
+                placeholder: "PP26/30 — U框隐私层 + 一字网布袋"
+            },
+            {
+                id: "pp26-storage-pockets",
+                icon: "layout-grid",
+                number: "05",
+                title: "分类收纳口袋系统",
+                desc: "通仓内部配备完整的分类收纳体系：两个不同尺寸的网布弹力口袋（适合电源适配器、鼠标等不规则形状物品）+ 一个立体成型口袋（适合鞋履或化妆包）。每个口袋都有明确的容量边界，避免杂物混在一起找不到。",
+                designIntent: "家庭出行的核心矛盾是「东西多且杂」。分类收纳系统用物理分隔强制整理秩序，让每位家庭成员的物品都有归属位置。",
+                tags: ["网布弹力袋", "立体口袋", "分类整理"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/分类收纳口袋系统/ScreenShot_2026-05-13_140319_048.png",
+                placeholder: "PP26/30 — 分类收纳：网布袋+立体口袋"
+            },
+            {
+                id: "pp26-uframe-fix",
+                icon: "pin",
+                number: "06",
+                title: "U框固定系统",
+                desc: "前盖掀开后，U框可通过顶盖上的四合扣系统固定在箱体上方，不会垂落遮挡视线或影响操作。这个细节确保了前开模式下单手操作的自由度——一只手拿衣服，另一只手可以轻松放入通仓。",
+                designIntent: "看似简单的四合扣固定，实际解决了前开模式的最大体验缺陷：「翻下来的盖子挡手又碍眼」。",
+                tags: ["四合扣固定", "单手操作", "防垂落"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/U框固定系统/ScreenShot_2026-05-13_142936_496.png",
+                placeholder: "PP26/30 — U框四合扣固定示意"
+            },
+            {
+                id: "pp26-dual-mode",
+                icon: "repeat",
+                number: "07",
+                title: "双模式自由切换",
+                desc: "<b>模式一·前盖深仓：</b>下拨海关锁→掀开前盖→通仓+U框层全部可用，适合快速取物、酒店窄空间使用。<br><br><b>模式二·传统中开：</b>上拨海关锁→从中间双U框打开，完整展示主仓全貌，适合在家整理打包、彻底清点行李时使用。<br><br>两种模式由同一把海关锁的两个拨杆分别控制，切换只需一秒。",
+                designIntent: "不做选择题。有人喜欢前开便捷，有人习惯传统中开。双模式让同一个产品服务两种不同的用户心智和使用场景。",
+                tags: ["前盖深仓模式", "传统中开模式", "一秒切换"],
+                image: null,
+                images: [
+                    { src: "产品卖点示意图/26英寸&30英寸托运箱/双模式自由切换/前开.png", label: "前开模式" },
+                    { src: "产品卖点示意图/26英寸&30英寸托运箱/双模式自由切换/中开.png", label: "中开模式" }
+                ],
+                placeholder: "PP26/30 — 双模式对比：前开 vs 中开"
+            },
+            {
+                id: "pp26-easy-flip",
+                icon: "sparkles",
+                number: "08",
+                title: "轻松翻盖体验",
+                desc: "前盖采用轻量化翻盖结构，铰链阻尼经过精心调校——既不会太松导致自动滑落，也不会太紧难以单手掀开。翻盖弧度经过人体工学测试，女性用户单手即可轻松操控。前盖内侧配有软垫缓冲，关闭时安静无噪音。",
+                designIntent: "「对女性用户友好」不是一句空话。从铰链阻尼到翻盖弧度到单手操作的力矩控制，每个参数都经过了反复验证。",
+                tags: ["单手操作", "女性友好", "静音缓冲"],
+                image: "产品卖点示意图/26英寸&30英寸托运箱/轻松翻盖体验/ee91dbf3736a4dee87a9a5b5c0203efd.png",
+                placeholder: "PP26/30 — 翻盖操作体验示意"
+            }
+        ],
+        specs: [
+            ["尺寸", "26寸 / 30寸（托运规格）"],
+            ["适用场景", "家庭出行、长途旅行（5天以上）"],
+            ["开口模式", "前盖深仓 + 传统中开（双模式）"],
+            ["锁具类型", "ITO 分体集成TSA海关锁"],
+            ["特殊功能", "U框隐私层 / 四合扣固定 / 通仓收纳"]
+        ]
+    }
+};
+
+// ============================================================
+// 状态管理
+// ============================================================
+let currentSize = "20";
+let currentModuleId = "pp20-structure";
+
+// ============================================================
+// 渲染函数
+// ============================================================
+
+function renderNav() {
+    const data = PRODUCT_DATA[currentSize];
+    const navList = document.getElementById("navList");
+    
+    let html = "";
+    data.modules.forEach((mod, idx) => {
+        const isActive = mod.id === currentModuleId;
+        html += `
+            <div class="nav-item ${isActive ? 'active' : ''}" 
+                 data-id="${mod.id}"
+                 onclick="switchModule('${mod.id}')"
+                 style="animation-delay:${idx * 0.05}s">
+                <div class="nav-icon" data-lucide="${mod.icon}"></div>
+                <div>
+                    <div class="nav-number">${mod.number}</div>
+                    <div>${mod.title}</div>
+                </div>
+            </div>
+        `;
+    });
+    
+    navList.innerHTML = html;
+    
+    // 渲染 Lucide Icons
+    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+    }
+}
+
+function renderContent() {
+    const data = PRODUCT_DATA[currentSize];
+    const mod = data.modules.find(m => m.id === currentModuleId) || data.modules[0];
+    const imageStage = document.getElementById("imageStage");
+    const infoCard = document.getElementById("infoCard");
+    
+    // 渲染图片区域
+    if (mod.images && mod.images.length > 0) {
+        // 双图并排模式
+        imageStage.className = "image-stage dual-image";
+        let imgsHtml = mod.images.map((img, i) => `
+            <div class="dual-image-item">
+                <div class="img-loading img-loading-${i}">
+                    <div class="spinner"></div>
+                </div>
+                <img src="${img.src}" alt="${img.label}"
+                     onload="this.previousElementSibling.style.display='none'"
+                     onerror="this.style.display='none'; this.parentElement.querySelector('.img-loading-${i}').innerHTML='<div style=display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;color:#999;><svg width=40 height=40 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' opacity=\'0.3\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><path d=\'M21 15l-5-5L5 21\'/></svg><span>${img.label}</span></div>'">
+                <span class="dual-label">${img.label}</span>
+            </div>
+        `).join('');
+        imageStage.innerHTML = imgsHtml;
+    } else if (mod.image) {
+        // 单图模式
+        imageStage.className = "image-stage";
+        imageStage.innerHTML = `
+            <div class="img-loading" id="imgLoading">
+                <div class="spinner"></div>
+            </div>
+            <img src="${mod.image}" 
+                 alt="${mod.title}" 
+                 onload="document.getElementById('imgLoading').style.display='none'"
+                 onerror="this.style.display='none'; document.getElementById('imgLoading').innerHTML='<div class=image-placeholder><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"M21 15l-5-5L5 21\"/></svg><span>${mod.placeholder}</span></div>'">
+        `;
+    } else {
+        imageStage.className = "image-stage";
+        imageStage.innerHTML = `
+            <div class="image-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="M21 15l-5-5L5 21"/>
+                </svg>
+                <span style="font-weight:600;font-size:14px;color:#999;">${mod.placeholder}</span>
+                <span style="font-size:12px;">（等待替换为产品实拍图）</span>
+            </div>
+        `;
+    }
+    
+    // 渲染信息卡片
+    infoCard.innerHTML = `
+        <div class="module-header fade-enter">
+            <span class="module-badge">${data.sizeLabel} · ${mod.number}</span>
+            <h2 class="module-title">${mod.title}</h2>
+        </div>
+        
+        <p class="module-desc fade-enter" style="animation-delay:0.1s">${mod.desc}</p>
+        
+        <div class="design-intent fade-enter" style="animation-delay:0.2s">
+            <div class="design-intent-label">✦ 设计意图</div>
+            <div class="design-intent-text">${mod.designIntent}</div>
+        </div>
+        
+        <div class="feature-tags fade-enter" style="animation-delay:0.3s">
+            ${mod.tags.map(tag => `<span class="feature-tag">✦ ${tag}</span>`).join("")}
+        </div>
+    `;
+
+    // 更新进度条
+    updateProgress();
+}
+
+function updateProgress() {
+    const data = PRODUCT_DATA[currentSize];
+    const idx = data.modules.findIndex(m => m.id === currentModuleId);
+    const pct = ((idx + 1) / data.modules.length) * 100;
+    document.getElementById("progressBar").style.width = pct + "%";
+}
+
+// ============================================================
+// 事件处理
+// ============================================================
+
+function switchSize(size) {
+    if (size === currentSize) return;
+    currentSize = size;
+    
+    // 更新Tab样式
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.size === size);
+    });
+    
+    // 切换到该尺寸的第一个模块
+    currentModuleId = PRODUCT_DATA[size].modules[0].id;
+    
+    renderNav();
+    renderContent();
+}
+
+function switchModule(moduleId) {
+    if (moduleId === currentModuleId) return;
+    currentModuleId = moduleId;
+    
+    // 更新导航高亮
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.toggle("active", item.dataset.id === moduleId);
+    });
+    
+    renderContent();
+}
+
+// 键盘导航
+document.addEventListener("keydown", (e) => {
+    const hint = document.getElementById("kbdHint");
+    const data = PRODUCT_DATA[currentSize];
+    const idx = data.modules.findIndex(m => m.id === currentModuleId);
+    
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        if (idx < data.modules.length - 1) {
+            switchModule(data.modules[idx + 1].id);
+            hint.classList.add("show");
+            setTimeout(() => hint.classList.remove("show"), 1500);
+        }
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (idx > 0) {
+            switchModule(data.modules[idx - 1].id);
+            hint.classList.add("show");
+            setTimeout(() => hint.classList.remove("show"), 1500);
+        }
+    } else if (e.key === "Escape") {
+        hint.classList.remove("show");
+    }
+});
+
+// ============================================================
+// 初始化
+// ============================================================
+renderNav();
+renderContent();
+
+// 图片预加载
+function preloadImages() {
+    Object.values(PRODUCT_DATA).forEach(sizeData => {
+        sizeData.modules.forEach(mod => {
+            if (mod.image) {
+                const img = new Image();
+                img.src = mod.image;
+            }
+        });
+    });
+}
+preloadImages();
+
+</script>
+</body>
+</html>
