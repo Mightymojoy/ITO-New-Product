@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEEKENDER · 旅行袋 | ITO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --ito-black: #111111;
+            --ito-green: #2D8B6F;
+            --ito-green-light: #DCFCE7;
+            --ito-gray-100: #FAFAFA;
+            --ito-gray-200: #F5F5F5;
+            --ito-gray-300: #E5E7EB;
+            --ito-gray-500: #666666;
+            --ito-gray-700: #999999;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ito-gray-100);
+            color: var(--ito-black);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+            border-bottom: 1px solid var(--ito-gray-300);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background-color: rgba(255,255,255,0.92);
+        }
+        
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 32px 0;
+        }
+        
+        .brand-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-align: center;
+            color: var(--ito-black);
+        }
+        
+        .brand-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: var(--ito-gray-500);
+            margin-top: 4px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .nav-sidebar {
+            width: 280px;
+            min-width: 280px;
+            background: #FFFFFF;
+            border-right: 1px solid var(--ito-gray-300);
+            padding: 32px 0;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+            position: sticky;
+            top: 140px;
+        }
+        
+        .nav-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ito-gray-700);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 24px 16px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 24px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border-left: 3px solid transparent;
+            color: var(--ito-gray-500);
+            font-size: 14.5px;
+            font-weight: 400;
+        }
+        
+        .nav-item:hover { background: var(--ito-gray-100); color: var(--ito-black); }
+        .nav-item.active { background: var(--ito-green-light); border-left-color: var(--ito-green); color: var(--ito-black); font-weight: 500; }
+        
+        .nav-icon {
+            width: 36px; height: 36px; border-radius: 10px; background: var(--ito-gray-200);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            transition: var(--transition-smooth); color: var(--ito-gray-500);
+        }
+        .nav-icon svg { width: 18px; height: 18px; stroke-width: 1.8; transition: var(--transition-smooth); }
+        .nav-item.active .nav-icon { background: var(--ito-green); }
+        .nav-item.active .nav-icon svg { stroke: #FFFFFF; }
+        .nav-number { font-size: 11px; color: var(--ito-gray-700); font-weight: 600; min-width: 20px; }
+        
+        .content-area { flex: 1; padding: 40px 48px; overflow-y: auto; }
+        
+        .image-stage {
+            width: 100%; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden;
+            background: var(--ito-gray-200); box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            position: relative; margin-bottom: 36px;
+        }
+        .image-stage img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease; }
+        
+        .image-placeholder {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 12px;
+            color: var(--ito-gray-700); background: var(--ito-gray-200);
+        }
+        .image-placeholder svg { width: 48px; height: 48px; opacity: 0.3; }
+        
+        .info-card {
+            background: #FFFFFF; border-radius: 16px; padding: 36px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.05); border: 1px solid var(--ito-gray-300);
+        }
+        .module-header { margin-bottom: 24px; }
+        
+        .module-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px; background: var(--ito-green-light); color: var(--ito-green);
+            font-size: 12px; font-weight: 600; border-radius: 20px; letter-spacing: 0.5px;
+        }
+        
+        .module-title { font-size: 26px; font-weight: 700; color: var(--ito-black); letter-spacing: 1px; margin-top: 8px; }
+        .module-desc { font-size: 15.5px; line-height: 1.85; color: var(--ito-gray-500); margin-bottom: 28px; }
+        
+        .design-intent {
+            background: linear-gradient(135deg, var(--ito-gray-100) 0%, #f0fdf4 100%);
+            border-radius: 12px; padding: 20px 24px; border-left: 4px solid var(--ito-green);
+            position: relative; overflow: hidden;
+        }
+        .design-intent::before { content: '"'; position: absolute; top: -8px; left: 12px; font-size: 64px; color: var(--ito-green); opacity: 0.08; font-family: Georgia, serif; line-height: 1; }
+        .design-intent-label { font-size: 11px; font-weight: 600; color: var(--ito-green); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .design-intent-text { font-size: 14px; line-height: 1.75; color: var(--ito-gray-500); font-style: italic; position: relative; z-index: 1; }
+        
+        .feature-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+        .feature-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #FFFFFF; border: 1px solid var(--ito-gray-300); border-radius: 20px; font-size: 12.5px; color: var(--ito-gray-500); transition: var(--transition-smooth); }
+        .feature-tag:hover { border-color: var(--ito-green); color: var(--ito-green); }
+        
+        .price-badge {
+            display: inline-flex; align-items: center; gap: 4px; margin-top: 8px;
+            padding: 5px 16px; background: var(--ito-green); color: #FFFFFF;
+            font-size: 20px; font-weight: 700; letter-spacing: 1px; border-radius: 6px;
+        }
+        .price-badge .yen { font-size: 14px; font-weight: 400; opacity: 0.85; }
+        .price-badge .sub-price { font-size: 14px; font-weight: 400; opacity: 0.85; margin-left: 4px; }
+        
+        .material-badges {
+            display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; margin-bottom: 6px;
+        }
+        .material-badge {
+            display: inline-flex; align-items: center; padding: 4px 12px;
+            border: 1px solid var(--ito-green); border-radius: 4px;
+            font-size: 11.5px; font-weight: 500; color: var(--ito-green);
+            background: transparent; letter-spacing: 0.3px;
+        }
+        
+        .spec-table { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 14px; }
+        .spec-table th { text-align: left; padding: 10px 16px; background: var(--ito-gray-100); color: var(--ito-gray-500); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--ito-gray-300); }
+        .spec-table td { padding: 12px 16px; border-bottom: 1px solid var(--ito-gray-300); color: var(--ito-gray-500); }
+        .spec-table tr:last-child td { border-bottom: none; }
+        .spec-table tr:hover td { background: var(--ito-gray-100); }
+        
+        .footer { text-align: center; padding: 32px; color: var(--ito-gray-700); font-size: 13px; border-top: 1px solid var(--ito-gray-300); background: #FFFFFF; }
+        .footer-brand { font-weight: 700; font-size: 18px; letter-spacing: 6px; color: var(--ito-black); margin-bottom: 4px; }
+        
+        .fade-enter { animation: fadeIn 0.45s ease both; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .nav-item { animation: navItemIn 0.35s ease both; }
+        @keyframes navItemIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--ito-gray-300); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--ito-gray-500); }
+        
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; }
+            .nav-sidebar { width: 100%; min-width: unset; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--ito-gray-300); padding: 20px 0; }
+            .nav-sidebar .nav-list { display: flex; overflow-x: auto; gap: 4px; padding: 0 16px; }
+            .nav-item { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 10px 18px; border-radius: 8px; background: var(--ito-gray-100); }
+            .nav-item.active { border-left: none; border-bottom-color: var(--ito-green); background: var(--ito-green-light); }
+            .nav-icon { display: none; }
+            .nav-section-title { display: none; }
+            .content-area { padding: 24px 20px; }
+            .info-card { padding: 24px; }
+            .module-title { font-size: 22px; }
+            .header-inner { padding: 20px 16px 0; }
+            .brand-title { font-size: 24px; letter-spacing: 2px; }
+        }
+        
+        .img-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--ito-gray-200); }
+        .spinner { width: 32px; height: 32px; border: 3px solid var(--ito-gray-300); border-top-color: var(--ito-green); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .kbd-hint { position: fixed; bottom: 20px; right: 20px; background: rgba(17,17,17,0.85); color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; backdrop-filter: blur(8px); opacity: 0; transform: translateY(8px); transition: all 0.3s ease; pointer-events: none; z-index: 200; }
+        .kbd-hint.show { opacity: 1; transform: translateY(0); }
+        .kbd-key { display: inline-block; padding: 2px 7px; background: rgba(255,255,255,0.15); border-radius: 4px; font-family: monospace; font-size: 11px; margin: 0 2px; }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="header">
+    <div class="header-inner">
+        <h1 class="brand-title">ITO WEEKENDER</h1>
+        <p class="brand-subtitle">短途旅行袋</p>
+    </div>
+</header>
+
+<main class="main-container">
+    <aside class="nav-sidebar" id="navSidebar">
+        <div class="nav-section-title">功能模块</div>
+        <nav class="nav-list" id="navList"><!-- JS动态渲染 --></nav>
+    </aside>
+    
+    <section class="content-area" id="contentArea">
+        <div class="image-stage" id="imageStage"><!-- JS动态渲染 --></div>
+        <div class="info-card" id="infoCard"><!-- JS动态渲染 --></div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-brand">ITO</div>
+    <p>Designed for Travelers · 短途 · 周末 · 差旅</p>
+</footer>
+
+<div class="kbd-hint" id="kbdHint">
+    按 <span class="kbd-key">↑</span> <span class="kbd-key">↓</span> 切换模块 · <span class="kbd-key">Esc</span> 关闭
+</div>
+
+<script>
+// ============================================================
+// 数据层：ITO WEEKENDER 完整卖点配置
+// ============================================================
+
+const PRODUCT_DATA = {
+    sizeLabel: "WEEKENDER",
+    sizeDesc: "短途 · 周末 · 差旅",
+    price: "¥1,590",
+    materials: ["CORDURA® Naturalle", "PROTECTION+ 三防", "7A长效抗菌里布"],
+    modules: [
+        {
+            id: "we-u-frame",
+            icon: "maximize-2",
+            number: "01",
+            title: "大U框主仓开口",
+            desc: "顶部主仓入口采用大U框设计——U框拉链从三面打开后，整个包体像贝壳一样完全展开，内部空间一览无余。U框开口面积远超传统旅行袋的窄口设计，打包时不需要「塞」而是直接「放」。打包和找东西都变得从容。",
+            designIntent: "周末旅行袋的核心体验差异在「打包那一刻」。U框大开口让打包从「猜谜游戏」变成「全貌视图」——所有东西尽收眼底，想拿什么拿什么。",
+            tags: ["大U框开口", "180°展开", "全景打包"],
+            image: "产品卖点示意图/WEEKENDER/大U框主仓开口/U框主仓.jpg",
+            placeholder: "WEEKENDER — 大U框主仓完全打开状态"
+        },
+        {
+            id: "we-laptop",
+            icon: "laptop",
+            number: "02",
+            title: "16寸电脑隔层",
+            desc: "主仓内部背板设有一个带拉链的隔离层，拉开后可放置最高16英寸笔记本电脑。隔离层将电脑与主仓其他物品物理分隔，避免衣物、洗漱包等对电脑屏幕造成挤压。拉链闭合后电脑完全隐身于包内，外观不受影响。",
+            designIntent: "短途旅行≠不干活。很多周末旅行者需要在路上处理工作。一个能装16寸电脑的旅行袋，意味着从「纯度假」到「轻办公」的无缝切换。",
+            tags: ["16寸笔记本", "拉链隔离层", "隐形收纳"],
+            image: "产品卖点示意图/WEEKENDER/16寸电脑隔层/电脑层.jpg",
+            placeholder: "WEEKENDER — 背部拉链隔层放16寸电脑"
+        },
+        {
+            id: "we-pouch",
+            icon: "package",
+            number: "03",
+            title: "卸挂绳收纳包",
+            desc: "主仓左侧壁配有一个网布速绳口袋 + 一个可拆卸的挂绳收纳包。网布口袋适合存放充电线、洗漱用品等小件；挂绳收纳包可单独取下，在酒店或健身房作为随身小包使用。由一张挂绳独立存在，既方便又灵活。",
+            designIntent: "旅行中总有一些「需要在酒店里带着走」的小件——房卡、手机、零钱。可拆卸收纳包让Weekender不只是旅行袋，还附赠了一个随身小包。",
+            tags: ["可拆卸收纳包", "网布速绳袋", "二合一设计"],
+            image: "产品卖点示意图/WEEKENDER/卸挂绳收纳包/挂绳收纳包.jpg",
+            placeholder: "WEEKENDER — 左侧壁网布口袋+可拆卸挂绳包"
+        },
+        {
+            id: "we-flap-zip",
+            icon: "folder-open",
+            number: "04",
+            title: "上翻盖一字拉链袋",
+            desc: "上翻盖内部设有一字拉链袋——翻开顶盖即可看到，用于存放薄型高频物品如充电宝、数据线、眼罩等。拉链袋位于盖板内侧，打开时物品不会掉落，关闭时被顶盖压住保持平整。",
+            designIntent: "顶盖内侧是最容易被浪费的空间。一字拉链袋把「无用面积」变成「高频收纳区」——打开即见，合上即隐。",
+            tags: ["一字拉链", "高频收纳", "空间利用"],
+            image: "产品卖点示意图/WEEKENDER/上翻盖一字拉链袋/一字拉链.jpg",
+            placeholder: "WEEKENDER — 上翻盖内部一字拉链袋"
+        },
+        {
+            id: "we-quick-pouch",
+            icon: "zap",
+            number: "05",
+            title: "背面快取小口袋",
+            desc: "背包背面顶部位置设有一个快吸小口袋，专为高频小物设计——太阳镜、充电宝、耳机充电仓等。磁吸开合方式无需拉链即可单手操作，「啪嗒」一声开合。口袋扁平不鼓包，装物后从正面几乎看不出变化。",
+            designIntent: "从包里找耳机是每次旅行的日常烦恼。背面快取口袋让这些小物件有了一个「不用弯腰、不用开主袋」的专属位置。",
+            tags: ["磁吸快取", "太阳镜仓", "耳机收纳"],
+            image: "产品卖点示意图/WEEKENDER/背面快取小口袋/背面快取小口袋.jpg",
+            placeholder: "WEEKENDER — 背面顶部快取小口袋"
+        },
+        {
+            id: "we-front-office",
+            icon: "columns-2",
+            number: "06",
+            title: "前置办公分仓",
+            desc: "正面顶部设有一个独立的翻盖拉链袋，内部配备了完整的办公收纳系统——笔插袋（可固定3-4支笔）、手机插袋（适配主流大屏手机）、大的敞口收纳区（可放文档、记事本、移动电源）。「走到哪工作到哪」的移动办公需求被一次性满足。",
+            designIntent: "Weekender的用户画像不只是度假者，还有大量「周末出差」的商务人群。前置办公仓把「工作用品」和「生活用品」从物理上分开——到酒店后打开办公仓拿出电脑，主仓可以不碰。",
+            tags: ["笔插袋", "手机袋", "敞口分区", "商务友好"],
+            image: "产品卖点示意图/WEEKENDER/前置办公分仓/办公仓.jpg",
+            placeholder: "WEEKENDER — 正面前置办公分仓内部"
+        },
+        {
+            id: "we-shoe",
+            icon: "shirt",
+            number: "07",
+            title: "鞋仓 / 脏衣隔离仓",
+            desc: "右侧面设有一个独立拉链仓——鞋仓/脏衣隔离仓。这个仓内部可延伸到主仓内部，但两个空间完全不互通，实现彻底的干湿分离、洁污隔离。穿过一次的牛仔裤、运动鞋、泳衣都可以直接丢进去，不会污染主仓的干净衣物。",
+            designIntent: "这是Weekender最聪明的设计之一。旅行中最尴尬的就是「脏衣服和干净衣服混在一起」。一个独立的隔离仓解决了这个问题——不需要额外带塑料袋。",
+            tags: ["干湿分离", "洁污隔离", "鞋仓", "延伸空间"],
+            image: "产品卖点示意图/WEEKENDER/鞋仓  脏衣隔离仓/鞋仓.jpg",
+            placeholder: "WEEKENDER — 右侧鞋仓/脏衣隔离仓"
+        },
+        {
+            id: "we-handle",
+            icon: "grip-horizontal",
+            number: "08",
+            title: "超纤皮提手 + 品牌标识",
+            desc: "左侧面配有一个超纤皮材质侧提手，手感细腻柔软，长时间提握不留勒痕。提手旁是ITO品牌超纤皮标识——既是品质认证，也是设计细节的点睛之笔。三色Weekender均配有可调节、可拆卸的加厚肩带，手提/单肩/斜挎模式自由切换。",
+            designIntent: "细节见品质。超纤皮提手的触感和手感是用户拿到包后的「第一印象」——柔软、扎实、精致，这些感受叠加在一起就是品牌认同感的来源。",
+            tags: ["超纤皮提手", "品牌皮标", "可调节肩带", "多模式背法"],
+            image: "产品卖点示意图/WEEKENDER/超纤皮提手 + 品牌标识/ScreenShot_2026-06-05_155304_934.png",
+            placeholder: "WEEKENDER — 左侧超纤皮提手+品牌标识"
+        },
+        {
+            id: "we-trolley",
+            icon: "move-vertical",
+            number: "09",
+            title: "拉杆箱插袋系统",
+            desc: "背面设有整体拉杆插袋系统，可直接套在行李箱拉杆上，适配ITO全系列及市面主流拉杆箱。插袋位置经过优化——套上拉杆箱后，Weekender自然贴合箱体不会前后倾斜。搭配行李箱使用，从值机到登机全程解放双手。",
+            designIntent: "旅行袋的宿命是「只能手提着」。拉杆插袋系统打破了这种宿命——让Weekender从一个需要手提的包，变成一个可以「站在行李箱上跟你走」的伴侣。",
+            tags: ["拉杆插袋", "解放双手", "差旅搭档"],
+            image: "产品卖点示意图/WEEKENDER/拉杆箱插袋系统/拉杆箱插袋.jpg",
+            placeholder: "WEEKENDER — 拉杆插袋系统"
+        }
+    ],
+    specs: [
+        ["产品", "ITO WEEKENDER"],
+        ["零售价", "¥1,590"],
+        ["配色", "屿灰 / 瑾紫 / 羽白"],
+        ["面料", "CORDURA® Naturalle"],
+        ["工艺", "PROTECTION+ 三防 / 7A长效抗菌里布"],
+        ["尺寸", "500×240×230mm"],
+        ["容积", "36L"],
+        ["净重", "1.05kg"],
+        ["电脑兼容", "最高16英寸笔记本电脑"],
+        ["主仓设计", "大U框开口 + 拉链隔离层"],
+        ["五金拉链", "自锁拉链（所有五金）"],
+        ["特殊设计", "鞋仓隔离 / 前置办公仓 / 可拆卸收纳包"],
+        ["肩带", "可调节可拆卸肩带"],
+        ["适配", "拉杆箱插袋系统"]
+    ]
+};
+
+// ============================================================
+// 状态管理 & 渲染
+// ============================================================
+let currentModuleId = PRODUCT_DATA.modules[0].id;
+
+function renderNav() {
+    const navList = document.getElementById("navList");
+    let html = "";
+    PRODUCT_DATA.modules.forEach((mod, idx) => {
+        const isActive = mod.id === currentModuleId;
+        html += `
+            <div class="nav-item ${isActive ? 'active' : ''}" 
+                 data-id="${mod.id}"
+                 onclick="switchModule('${mod.id}')"
+                 style="animation-delay:${idx * 0.05}s">
+                <div class="nav-icon" data-lucide="${mod.icon}"></div>
+                <div>
+                    <div class="nav-number">${mod.number}</div>
+                    <div>${mod.title}</div>
+                </div>
+            </div>
+        `;
+    });
+    navList.innerHTML = html;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
+}
+
+function renderContent() {
+    const mod = PRODUCT_DATA.modules.find(m => m.id === currentModuleId) || PRODUCT_DATA.modules[0];
+    const imageStage = document.getElementById("imageStage");
+    const infoCard = document.getElementById("infoCard");
+    
+    imageStage.className = "image-stage";
+    if (mod.image) {
+        imageStage.innerHTML = `
+            <div class="img-loading" id="imgLoading"><div class="spinner"></div></div>
+            <img src="${mod.image}" alt="${mod.title}"
+                 onload="document.getElementById('imgLoading').style.display='none'"
+                 onerror="this.style.display='none'">
+        `;
+    } else {
+        imageStage.innerHTML = `
+            <div class="image-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="M21 15l-5-5L5 21"/>
+                </svg>
+                <span style="font-weight:600;font-size:14px;color:#999;">${mod.placeholder}</span>
+                <span style="font-size:12px;">（等待替换为产品实拍图）</span>
+            </div>
+        `;
+    }
+    
+    infoCard.innerHTML = `
+        <div class="module-header fade-enter">
+            <span class="module-badge">WEEKENDER · ${mod.number}</span>
+            <h2 class="module-title">${mod.title}</h2>
+            <div class="price-badge">
+                <span class="yen">¥</span>${PRODUCT_DATA.price.replace(/^¥/, '')}
+            </div>
+            <div class="material-badges fade-enter" style="animation-delay:0.02s">
+                ${PRODUCT_DATA.materials.map(m => `<span class="material-badge">${m}</span>`).join("")}
+            </div>
+        </div>
+        <p class="module-desc fade-enter" style="animation-delay:0.1s">${mod.desc}</p>
+        <div class="design-intent fade-enter" style="animation-delay:0.2s">
+            <div class="design-intent-label">✦ 设计意图</div>
+            <div class="design-intent-text">${mod.designIntent}</div>
+        </div>
+        <div class="feature-tags fade-enter" style="animation-delay:0.3s">
+            ${mod.tags.map(t => `<span class="feature-tag">✦ ${t}</span>`).join("")}
+        </div>
+        <table class="spec-table fade-enter" style="animation-delay:0.35s">
+            <tr><th colspan="2">规格参数</th></tr>
+            ${PRODUCT_DATA.specs.map(s => `<tr><td>${s[0]}</td><td>${s[1]}</td></tr>`).join("")}
+        </table>
+    `;
+    updateProgress();
+}
+
+function updateProgress() {
+    const idx = PRODUCT_DATA.modules.findIndex(m => m.id === currentModuleId);
+    document.getElementById("progressBar").style.width = ((idx + 1) / PRODUCT_DATA.modules.length) * 100 + "%";
+}
+
+function switchModule(moduleId) {
+    if (moduleId === currentModuleId) return;
+    currentModuleId = moduleId;
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.toggle("active", item.dataset.id === moduleId);
+    });
+    renderContent();
+}
+
+document.addEventListener("keydown", (e) => {
+    const hint = document.getElementById("kbdHint");
+    const idx = PRODUCT_DATA.modules.findIndex(m => m.id === currentModuleId);
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        if (idx < PRODUCT_DATA.modules.length - 1) {
+            switchModule(PRODUCT_DATA.modules[idx + 1].id);
+            hint.classList.add("show"); setTimeout(() => hint.classList.remove("show"), 1500);
+        }
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (idx > 0) {
+            switchModule(PRODUCT_DATA.modules[idx - 1].id);
+            hint.classList.add("show"); setTimeout(() => hint.classList.remove("show"), 1500);
+        }
+    } else if (e.key === "Escape") hint.classList.remove("show");
+});
+
+renderNav();
+renderContent();
+</script>
+</body>
+</html>

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUFFLE PRO BACKPACK · 双肩包 | ITO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --ito-black: #111111;
+            --ito-green: #2D8B6F;
+            --ito-green-light: #DCFCE7;
+            --ito-gray-100: #FAFAFA;
+            --ito-gray-200: #F5F5F5;
+            --ito-gray-300: #E5E7EB;
+            --ito-gray-500: #666666;
+            --ito-gray-700: #999999;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ito-gray-100);
+            color: var(--ito-black);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* ===== Header ===== */
+        .header {
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+            border-bottom: 1px solid var(--ito-gray-300);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background-color: rgba(255,255,255,0.92);
+        }
+        
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 32px 0;
+        }
+        
+        .brand-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-align: center;
+            color: var(--ito-black);
+        }
+        
+        .brand-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: var(--ito-gray-500);
+            margin-top: 4px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        
+        /* Tab 切换 */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .tab-btn {
+            padding: 12px 40px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ito-gray-500);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+            letter-spacing: 1px;
+        }
+        
+        .tab-btn:hover { color: var(--ito-black); }
+        
+        .tab-btn.active {
+            color: var(--ito-black);
+            font-weight: 600;
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 3px;
+            background: var(--ito-green);
+            border-radius: 2px;
+        }
+        
+        .tab-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--ito-gray-300);
+            align-self: center;
+            margin: 0 8px;
+        }
+        
+        /* ===== Main Layout ===== */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .nav-sidebar {
+            width: 280px;
+            min-width: 280px;
+            background: #FFFFFF;
+            border-right: 1px solid var(--ito-gray-300);
+            padding: 32px 0;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+            position: sticky;
+            top: 140px;
+        }
+        
+        .nav-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ito-gray-700);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 24px 16px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 24px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border-left: 3px solid transparent;
+            color: var(--ito-gray-500);
+            font-size: 14.5px;
+            font-weight: 400;
+        }
+        
+        .nav-item:hover {
+            background: var(--ito-gray-100);
+            color: var(--ito-black);
+        }
+        
+        .nav-item.active {
+            background: var(--ito-green-light);
+            border-left-color: var(--ito-green);
+            color: var(--ito-black);
+            font-weight: 500;
+        }
+        
+        .nav-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--ito-gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition-smooth);
+            color: var(--ito-gray-500);
+        }
+        
+        .nav-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 1.8;
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-item.active .nav-icon {
+            background: var(--ito-green);
+        }
+        
+        .nav-item.active .nav-icon svg {
+            stroke: #FFFFFF;
+        }
+        
+        .nav-number {
+            font-size: 11px;
+            color: var(--ito-gray-700);
+            font-weight: 600;
+            min-width: 20px;
+        }
+        
+        .content-area {
+            flex: 1;
+            padding: 40px 48px;
+            overflow-y: auto;
+        }
+        
+        .image-stage {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--ito-gray-200);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+            position: relative;
+            margin-bottom: 36px;
+        }
+        
+        .image-stage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--ito-gray-700);
+            background: var(--ito-gray-200);
+        }
+        
+        .image-placeholder svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.3;
+        }
+        
+        .info-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 36px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+            border: 1px solid var(--ito-gray-300);
+        }
+        
+        .module-header {
+            margin-bottom: 24px;
+        }
+        
+        .module-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: var(--ito-green-light);
+            color: var(--ito-green);
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .module-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--ito-black);
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+        
+        .module-desc {
+            font-size: 15.5px;
+            line-height: 1.85;
+            color: var(--ito-gray-500);
+            margin-bottom: 28px;
+        }
+        
+        .design-intent {
+            background: linear-gradient(135deg, var(--ito-gray-100) 0%, #f0fdf4 100%);
+            border-radius: 12px;
+            padding: 20px 24px;
+            border-left: 4px solid var(--ito-green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design-intent::before {
+            content: '"';
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            font-size: 64px;
+            color: var(--ito-green);
+            opacity: 0.08;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .design-intent-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ito-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        
+        .design-intent-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--ito-gray-500);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #FFFFFF;
+            border: 1px solid var(--ito-gray-300);
+            border-radius: 20px;
+            font-size: 12.5px;
+            color: var(--ito-gray-500);
+            transition: var(--transition-smooth);
+        }
+        
+        .feature-tag:hover {
+            border-color: var(--ito-green);
+            color: var(--ito-green);
+        }
+        
+        .price-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
+            padding: 5px 16px;
+            background: var(--ito-green);
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 6px;
+        }
+        .price-badge .yen {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+        .price-badge .sub-price {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.85;
+            margin-left: 4px;
+        }
+        
+        .material-badges {
+            display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; margin-bottom: 6px;
+        }
+        .material-badge {
+            display: inline-flex; align-items: center; padding: 4px 12px;
+            border: 1px solid var(--ito-green); border-radius: 4px;
+            font-size: 11.5px; font-weight: 500; color: var(--ito-green);
+            background: transparent; letter-spacing: 0.3px;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 32px;
+            font-size: 14px;
+        }
+        
+        .spec-table th {
+            text-align: left;
+            padding: 10px 16px;
+            background: var(--ito-gray-100);
+            color: var(--ito-gray-500);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--ito-gray-300);
+        }
+        
+        .spec-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--ito-gray-300);
+            color: var(--ito-gray-500);
+        }
+        
+        .spec-table tr:last-child td { border-bottom: none; }
+        .spec-table tr:hover td { background: var(--ito-gray-100); }
+        
+        .footer {
+            text-align: center;
+            padding: 32px;
+            color: var(--ito-gray-700);
+            font-size: 13px;
+            border-top: 1px solid var(--ito-gray-300);
+            background: #FFFFFF;
+        }
+        
+        .footer-brand {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 6px;
+            color: var(--ito-black);
+            margin-bottom: 4px;
+        }
+        
+        .fade-enter { animation: fadeIn 0.45s ease both; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .nav-item { animation: navItemIn 0.35s ease both; }
+        @keyframes navItemIn {
+            from { opacity: 0; transform: translateX(-12px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--ito-gray-300); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--ito-gray-500); }
+        
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; }
+            .nav-sidebar {
+                width: 100%;
+                min-width: unset;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--ito-gray-300);
+                padding: 20px 0;
+            }
+            .nav-sidebar .nav-list {
+                display: flex;
+                overflow-x: auto;
+                gap: 4px;
+                padding: 0 16px;
+            }
+            .nav-item {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 10px 18px;
+                border-radius: 8px;
+                background: var(--ito-gray-100);
+            }
+            .nav-item.active {
+                border-left: none;
+                border-bottom-color: var(--ito-green);
+                background: var(--ito-green-light);
+            }
+            .nav-icon { display: none; }
+            .nav-section-title { display: none; }
+            .content-area { padding: 24px 20px; }
+            .info-card { padding: 24px; }
+            .module-title { font-size: 22px; }
+            .header-inner { padding: 20px 16px 0; }
+            .brand-title { font-size: 24px; letter-spacing: 2px; }
+        }
+        
+        .img-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ito-gray-200);
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--ito-gray-300);
+            border-top-color: var(--ito-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .kbd-hint {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(17,17,17,0.85);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 200;
+        }
+        
+        .kbd-hint.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .kbd-key {
+            display: inline-block;
+            padding: 2px 7px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 进度条 -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-inner">
+        <h1 class="brand-title">ITO TRUFFLE PRO BACKPACK</h1>
+        <p class="brand-subtitle">通勤双肩包</p>
+        
+        <!-- 尺寸Tab -->
+        <div class="tab-container">
+            <button class="tab-btn active" data-size="12" onclick="switchSize('12')">
+                12L 通勤款
+            </button>
+            <div class="tab-divider"></div>
+            <button class="tab-btn" data-size="20" onclick="switchSize('20')">
+                20L 扩容款
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- 主内容 -->
+<main class="main-container">
+    
+    <aside class="nav-sidebar" id="navSidebar">
+        <div class="nav-section-title">功能模块</div>
+        <nav class="nav-list" id="navList"><!-- JS动态渲染 --></nav>
+    </aside>
+    
+    <section class="content-area" id="contentArea">
+        <div class="image-stage" id="imageStage"><!-- JS动态渲染 --></div>
+        <div class="info-card" id="infoCard"><!-- JS动态渲染 --></div>
+    </section>
+    
+</main>
+
+<footer class="footer">
+    <div class="footer-brand">ITO</div>
+    <p>Designed for Travelers · 通勤 · 差旅 · 日常</p>
+</footer>
+
+<div class="kbd-hint" id="kbdHint">
+    按 <span class="kbd-key">↑</span> <span class="kbd-key">↓</span> 切换模块 · <span class="kbd-key">Esc</span> 关闭
+</div>
+
+<script>
+// ============================================================
+// 数据层：TRUFFLE PRO BACKPACK 完整卖点配置
+// ============================================================
+
+const PRODUCT_DATA = {
+    "12": {
+        sizeLabel: "12L 通勤款",
+        sizeDesc: "轻量日常 · 极简出行",
+        price: "¥1,190",
+        materials: ["camira Era英国进口面料", "PROTECTION+ 三防", "7A长效抗菌里布"],
+        modules: [
+            {
+                id: "bp-fpocket",
+                icon: "zap",
+                number: "01",
+                title: "正面顶部快取口袋",
+                desc: "主拉链顶盖下方隐藏着一个快吸小口袋，专为高频随手物品设计——太阳镜、蓝牙耳机充电仓、门禁卡等小件。口袋位于正面偏上位置，背着包时手臂自然搭过去即可单手操作。无需摘下背包，即可完成存取动作。",
+                designIntent: "不想摘下背包才能拿到耳机。快取口袋的定位逻辑是「背着就能用」——在安检、打卡、接电话的场景下，这个口袋能省下至少3次摘包动作。",
+                tags: ["快取口袋", "单手操作", "耳机仓"],
+                image: null,
+                placeholder: "BACKPACK — 正面顶部快取口袋"
+            },
+            {
+                id: "bp-laptop",
+                icon: "laptop",
+                number: "02",
+                title: "14寸电脑收纳",
+                desc: "主仓内部背板区域配备独立电脑插袋，加厚绒布内衬包裹机身。12L版本可容纳最高14英寸笔记本电脑，适配主流轻薄本。电脑插袋与主仓保持一定间隙，避免其他物品挤压屏幕。",
+                designIntent: "轻薄本用户通勤时的第一个需求是「包里有固定位置放电脑」。独立插袋意味着电脑不会跟钥匙/水杯挤在一起，屏幕上也不会被压出痕迹。",
+                tags: ["14寸笔记本", "独立插袋", "绒布保护"],
+                image: null,
+                placeholder: "BACKPACK 12L — 14寸电脑插袋"
+            },
+            {
+                id: "bp-tablet",
+                icon: "tablets",
+                number: "03",
+                title: "平板专用插袋",
+                desc: "电脑插袋前方另设独立平板插袋，可放入iPad Pro 12.9\"或同等尺寸平板设备。平板与电脑物理隔离，避免双设备直接接触摩擦。插袋开口深度经过计算，平板放入后不会自动滑出，取放时又有合适阻力感。",
+                designIntent: "「电脑+平板」双设备通勤已是很多职场人的标配。两个独立插袋实现了「双设备不打架」的基本诉求。",
+                tags: ["平板插袋", "双设备隔离", "防滑设计"],
+                image: null,
+                placeholder: "BACKPACK — 平板专用插袋"
+            },
+            {
+                id: "bp-org",
+                icon: "layout-grid",
+                number: "04",
+                title: "小物收纳系统",
+                desc: "主仓内部配有两个开放式口袋 + 一个网布抽绳收纳袋。开放式口袋适合存放笔记本、护照本等扁平物品；抽绳袋可快速收纳充电宝、数据线、钥匙包等零碎——拉紧抽绳后所有小物被「锁」在袋内，不会散落到包底。",
+                designIntent: "小物收纳的敌人是「沉底」。抽绳袋用最简单的物理方式解决了这个问题：拉紧绳子，杂物就乖乖待在一起。",
+                tags: ["开放式口袋", "网布抽绳袋", "防沉底"],
+                image: null,
+                placeholder: "BACKPACK — 内部收纳系统: 开放口袋+抽绳袋"
+            },
+            {
+                id: "bp-bottle",
+                icon: "flask-conical",
+                number: "05",
+                title: "左侧水杯插袋",
+                desc: "背包左侧配有弹力网布水杯插袋，深袋设计可容纳500-750ml水杯/保温杯。水杯插袋位于背包左侧，符合大多数人右手主力、左手拿杯的使用习惯。弹力网布自适应杯体直径，拉伸后回弹不变形。",
+                designIntent: "通勤路上的咖啡，健身房的水壶，会议室的矿泉水——水杯插袋是最平凡的刚需，也是最容易被忽略的设计细节。",
+                tags: ["弹力网布", "左侧取放", "多尺寸兼容"],
+                image: null,
+                placeholder: "BACKPACK — 左侧水杯插袋"
+            },
+            {
+                id: "bp-conceal",
+                icon: "eye-off",
+                number: "06",
+                title: "右下侧手机收纳袋",
+                desc: "背包正面右下侧位置设有一个隐蔽的口袋，专为手机/耳机快速存取设计。口袋位置经过人体工学考量——右手自然下垂即可触达，无需摘下背包或大幅扭臂。紧贴包体的扁平袋型不增加背包体积，外部不易察觉，兼顾实用与防盗。",
+                designIntent: "通勤路上手机使用频率极高——看导航、回消息、刷门禁。右下侧袋让手机永远在一个「手自然放下去的位置」。",
+                tags: ["隐蔽设计", "防盗", "右侧快取"],
+                image: null,
+                placeholder: "BACKPACK — 右下侧手机收纳袋"
+            },
+            {
+                id: "bp-hooks",
+                icon: "unlink",
+                number: "07",
+                title: "两侧日字钩扣系统",
+                desc: "背包两侧各设有一组日字钩扣，可拆卸/可调节。这是TRUFFLE PRO BACKPACK的核心设计亮点之一：<br><br><b>① 大开口模式：</b>拆卸两侧钩扣后，背包顶部可完全打开，像旅行袋一样装大件物品（如衣物、相机包）。<br><br><b>② 形态塑形：</b>装满后用钩扣及织带拉紧调节，可控制包型外观，保持利落不臃肿。",
+                designIntent: "双肩包的形态不能只有「满」和「不满」两种状态。日字钩扣让用户在「满载大件」和「日常通勤」之间自由切换，不再为包型变形而烦恼。",
+                tags: ["可拆卸钩扣", "大开口", "形态调节", "核心设计"],
+                image: null,
+                placeholder: "BACKPACK — 两侧日字钩扣: 拆卸→大开口模式"
+            },
+            {
+                id: "bp-dring",
+                icon: "plus-circle",
+                number: "08",
+                title: "肩带D环外挂",
+                desc: "两侧肩带上各配备一枚金属D环，可用于外挂钥匙扣、迷你收纳包、公交卡套等随身配件。D环位置经过测试——挂上配件后自然垂落脚边偏上位置，行走时不会晃荡碰撞腿部。",
+                designIntent: "钥匙进了包就找不到了——这个问题比想象中更普遍。肩带D环让钥匙永远挂在触手可及的位置。",
+                tags: ["肩带D环", "外挂配件", "不晃动"],
+                image: null,
+                placeholder: "BACKPACK — 肩带D环挂件示意"
+            },
+            {
+                id: "bp-backpocket",
+                icon: "wallet",
+                number: "09",
+                title: "背部拉链口袋",
+                desc: "背包背面顶部设有一个独立拉链口袋，尺寸刚好放置护照、机票、ID证件、门禁卡等高频但需安全存放的物品。紧贴背部的设计使得外人难以从背后偷取，同时完全不影响背包正面外观。",
+                designIntent: "差旅时最怕证件被偷。背部口袋把安全性和便利性统一了——外人看不到、摸不着，但自己手往后一伸就能拉开。",
+                tags: ["证件收纳", "背部安全", "差旅友好"],
+                image: null,
+                placeholder: "BACKPACK — 背部顶部拉链口袋"
+            },
+            {
+                id: "bp-trolley",
+                icon: "move-vertical",
+                number: "10",
+                title: "拉杆箱插袋系统",
+                desc: "背包背面设有整体拉杆插袋系统，可套入行李箱拉杆杆。适配ITO全系列行李箱及市面主流拉杆箱。顶部另设提手，在「背着」「提着」「插拉杆」三种模式间自由切换。",
+                designIntent: "差旅场景的痛点：背了包就不能拉箱子，拉了箱子就不想背包。拉杆插袋让「背着包拖着箱」变成「包在箱子上、双手全解放」。",
+                tags: ["拉杆插袋", "多模式切换", "差旅必配"],
+                image: null,
+                placeholder: "BACKPACK — 拉杆插袋系统"
+            }
+        ],
+        specs: [
+            ["产品", "ITO TRUFFLE PRO BACKPACK"],
+            ["容量", "12L 通勤款"],
+            ["零售价", "¥1,190"],
+            ["配色", "烟黑 / 雾灰 / 棕褐"],
+            ["面料", "camira Era英国进口面料"],
+            ["工艺", "PROTECTION+ 三防 / 7A长效抗菌里布"],
+            ["尺寸", "待补充"],
+            ["容积", "待补充"],
+            ["净重", "待补充"],
+            ["电脑兼容", "最高14英寸笔记本电脑"],
+            ["五金拉链", "自锁拉链（所有五金）"],
+            ["特殊设计", "日字钩扣大开口 / 手机隐蔽袋 / 肩带D环"],
+            ["适配", "拉杆箱插袋系统"]
+        ]
+    },
+    "20": {
+        sizeLabel: "20L 扩容款",
+        sizeDesc: "全能出行 · 收纳升级",
+        price: "¥1,390",
+        materials: ["camira Era英国进口面料", "PROTECTION+ 三防", "7A长效抗菌里布"],
+        modules: [
+            {
+                id: "bp-fpocket",
+                icon: "zap",
+                number: "01",
+                title: "正面顶部快取口袋",
+                desc: "主拉链顶盖下方隐藏着一个快吸小口袋，专为高频随手物品设计——太阳镜、蓝牙耳机充电仓、门禁卡等小件。口袋位于正面偏上位置，背着包时手臂自然搭过去即可单手操作。无需摘下背包，即可完成存取动作。",
+                designIntent: "不想摘下背包才能拿到耳机。快取口袋的定位逻辑是「背着就能用」——在安检、打卡、接电话的场景下，这个口袋能省下至少3次摘包动作。",
+                tags: ["快取口袋", "单手操作", "耳机仓"],
+                image: null,
+                placeholder: "BACKPACK — 正面顶部快取口袋"
+            },
+            {
+                id: "bp-laptop",
+                icon: "laptop",
+                number: "02",
+                title: "16寸电脑收纳",
+                desc: "主仓内部背板区域配备独立电脑插袋，加厚绒布内衬包裹机身。20L版本可容纳最高16英寸笔记本电脑（如MacBook Pro 16\"等大尺寸机型），同时前方另设平板插袋，可同时收纳电脑+平板。电脑区域与主仓其他物品隔离，互不挤压。",
+                designIntent: "20L用户往往需要携带更全的设备——16寸大屏本+平板+周边配件。独立电脑仓确保大尺寸设备也能得到完整保护。",
+                tags: ["16寸笔记本", "独立插袋", "绒布保护"],
+                image: null,
+                placeholder: "BACKPACK 20L — 16寸电脑插袋"
+            },
+            {
+                id: "bp-tablet",
+                icon: "tablets",
+                number: "03",
+                title: "平板专用插袋",
+                desc: "电脑插袋前方另设独立平板插袋，可放入iPad Pro 12.9\"或同等尺寸平板设备。平板与电脑物理隔离，避免双设备直接接触摩擦。20L版本的平板仓空间更宽松，取放大尺寸平板更加顺畅。",
+                designIntent: "20L扩容款面向的是「需要同时带电脑+平板+文件」的重度办公用户。双独立插袋是基本的专业素养。",
+                tags: ["平板插袋", "双设备隔离", "兼容大尺寸"],
+                image: null,
+                placeholder: "BACKPACK — 平板专用插袋"
+            },
+            {
+                id: "bp-org",
+                icon: "layout-grid",
+                number: "04",
+                title: "小物收纳系统",
+                desc: "主仓内部配有两个开放式口袋 + 一个网布抽绳收纳袋。开放式口袋适合存放笔记本、护照本等扁平物品；抽绳袋可快速收纳充电宝、数据线、钥匙包等零碎——拉紧抽绳后所有小物被「锁」在袋内，不会散落到包底。",
+                designIntent: "小物收纳的敌人是「沉底」。抽绳袋用最简单的物理方式解决了这个问题：拉紧绳子，杂物就乖乖待在一起。",
+                tags: ["开放式口袋", "网布抽绳袋", "防沉底"],
+                image: null,
+                placeholder: "BACKPACK — 内部收纳系统: 开放口袋+抽绳袋"
+            },
+            {
+                id: "bp-bottle",
+                icon: "flask-conical",
+                number: "05",
+                title: "左侧水杯插袋",
+                desc: "背包左侧配有弹力网布水杯插袋，深袋设计可容纳500-750ml水杯/保温杯。水杯插袋位于背包左侧，符合大多数人右手主力、左手拿杯的使用习惯。弹力网布自适应杯体直径，拉伸后回弹不变形。",
+                designIntent: "通勤路上的咖啡，健身房的水壶，会议室的矿泉水——水杯插袋是最平凡的刚需，也是最容易被忽略的设计细节。",
+                tags: ["弹力网布", "左侧取放", "多尺寸兼容"],
+                image: null,
+                placeholder: "BACKPACK — 左侧水杯插袋"
+            },
+            {
+                id: "bp-conceal",
+                icon: "eye-off",
+                number: "06",
+                title: "右下侧手机收纳袋",
+                desc: "背包正面右下侧位置设有一个隐蔽的口袋，专为手机/耳机快速存取设计。口袋位置经过人体工学考量——右手自然下垂即可触达，无需摘下背包或大幅扭臂。紧贴包体的扁平袋型不增加背包体积，外部不易察觉，兼顾实用与防盗。",
+                designIntent: "通勤路上手机使用频率极高——看导航、回消息、刷门禁。右下侧袋让手机永远在一个「手自然放下去的位置」。",
+                tags: ["隐蔽设计", "防盗", "右侧快取"],
+                image: null,
+                placeholder: "BACKPACK — 右下侧手机收纳袋"
+            },
+            {
+                id: "bp-hooks",
+                icon: "unlink",
+                number: "07",
+                title: "两侧日字钩扣系统",
+                desc: "背包两侧各设有一组日字钩扣，可拆卸/可调节。这是TRUFFLE PRO BACKPACK的核心设计亮点之一：<br><br><b>① 大开口模式：</b>拆卸两侧钩扣后，背包顶部可完全打开，像旅行袋一样装大件物品（如衣物、相机包）。<br><br><b>② 形态塑形：</b>装满后用钩扣及织带拉紧调节，可控制包型外观，保持利落不臃肿。",
+                designIntent: "双肩包的形态不能只有「满」和「不满」两种状态。日字钩扣让用户在「满载大件」和「日常通勤」之间自由切换，不再为包型变形而烦恼。",
+                tags: ["可拆卸钩扣", "大开口", "形态调节", "核心设计"],
+                image: null,
+                placeholder: "BACKPACK — 两侧日字钩扣: 拆卸→大开口模式"
+            },
+            {
+                id: "bp-dring",
+                icon: "plus-circle",
+                number: "08",
+                title: "肩带D环外挂",
+                desc: "两侧肩带上各配备一枚金属D环，可用于外挂钥匙扣、迷你收纳包、公交卡套等随身配件。D环位置经过测试——挂上配件后自然垂落脚边偏上位置，行走时不会晃荡碰撞腿部。",
+                designIntent: "钥匙进了包就找不到了——这个问题比想象中更普遍。肩带D环让钥匙永远挂在触手可及的位置。",
+                tags: ["肩带D环", "外挂配件", "不晃动"],
+                image: null,
+                placeholder: "BACKPACK — 肩带D环挂件示意"
+            },
+            {
+                id: "bp-backpocket",
+                icon: "wallet",
+                number: "09",
+                title: "背部拉链口袋",
+                desc: "背包背面顶部设有一个独立拉链口袋，尺寸刚好放置护照、机票、ID证件、门禁卡等高频但需安全存放的物品。紧贴背部的设计使得外人难以从背后偷取，同时完全不影响背包正面外观。",
+                designIntent: "差旅时最怕证件被偷。背部口袋把安全性和便利性统一了——外人看不到、摸不着，但自己手往后一伸就能拉开。",
+                tags: ["证件收纳", "背部安全", "差旅友好"],
+                image: null,
+                placeholder: "BACKPACK — 背部顶部拉链口袋"
+            },
+            {
+                id: "bp-trolley",
+                icon: "move-vertical",
+                number: "10",
+                title: "拉杆箱插袋系统",
+                desc: "背包背面设有整体拉杆插袋系统，可套入行李箱拉杆杆。适配ITO全系列行李箱及市面主流拉杆箱。顶部另设提手，在「背着」「提着」「插拉杆」三种模式间自由切换。",
+                designIntent: "差旅场景的痛点：背了包就不能拉箱子，拉了箱子就不想背包。拉杆插袋让「背着包拖着箱」变成「包在箱子上、双手全解放」。",
+                tags: ["拉杆插袋", "多模式切换", "差旅必配"],
+                image: null,
+                placeholder: "BACKPACK — 拉杆插袋系统"
+            }
+        ],
+        specs: [
+            ["产品", "ITO TRUFFLE PRO BACKPACK"],
+            ["容量", "20L 扩容款"],
+            ["零售价", "¥1,390"],
+            ["配色", "烟黑 / 雾灰 / 棕褐"],
+            ["面料", "camira Era英国进口面料"],
+            ["工艺", "PROTECTION+ 三防 / 7A长效抗菌里布"],
+            ["尺寸", "待补充"],
+            ["容积", "待补充"],
+            ["净重", "待补充"],
+            ["电脑兼容", "最高16英寸笔记本电脑"],
+            ["五金拉链", "自锁拉链（所有五金）"],
+            ["特殊设计", "日字钩扣大开口 / 手机隐蔽袋 / 肩带D环"],
+            ["适配", "拉杆箱插袋系统"]
+        ]
+    }
+};
+
+// ============================================================
+// 状态管理
+// ============================================================
+let currentSize = "12";
+let currentModuleId = "bp-fpocket";
+
+// ============================================================
+// 渲染函数
+// ============================================================
+
+function renderNav() {
+    const data = PRODUCT_DATA[currentSize];
+    const navList = document.getElementById("navList");
+    
+    let html = "";
+    data.modules.forEach((mod, idx) => {
+        const isActive = mod.id === currentModuleId;
+        html += `
+            <div class="nav-item ${isActive ? 'active' : ''}" 
+                 data-id="${mod.id}"
+                 onclick="switchModule('${mod.id}')"
+                 style="animation-delay:${idx * 0.05}s">
+                <div class="nav-icon" data-lucide="${mod.icon}"></div>
+                <div>
+                    <div class="nav-number">${mod.number}</div>
+                    <div>${mod.title}</div>
+                </div>
+            </div>
+        `;
+    });
+    
+    navList.innerHTML = html;
+    
+    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+    }
+}
+
+function renderContent() {
+    const data = PRODUCT_DATA[currentSize];
+    const mod = data.modules.find(m => m.id === currentModuleId) || data.modules[0];
+    const imageStage = document.getElementById("imageStage");
+    const infoCard = document.getElementById("infoCard");
+    
+    // 图片区域（预留占位符）
+    imageStage.className = "image-stage";
+    if (mod.image) {
+        imageStage.innerHTML = `
+            <div class="img-loading" id="imgLoading">
+                <div class="spinner"></div>
+            </div>
+            <img src="${mod.image}" 
+                 alt="${mod.title}" 
+                 onload="document.getElementById('imgLoading').style.display='none'"
+                 onerror="this.style.display='none'">
+        `;
+    } else {
+        imageStage.innerHTML = `
+            <div class="image-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="M21 15l-5-5L5 21"/>
+                </svg>
+                <span style="font-weight:600;font-size:14px;color:#999;">${mod.placeholder}</span>
+                <span style="font-size:12px;">（等待替换为产品实拍图）</span>
+            </div>
+        `;
+    }
+    
+    // 信息卡片
+    infoCard.innerHTML = `
+        <div class="module-header fade-enter">
+            <span class="module-badge">${data.sizeLabel} · ${mod.number}</span>
+            <h2 class="module-title">${mod.title}</h2>
+            <div class="price-badge">
+                <span class="yen">¥</span>${data.price.replace(/^¥/, '')}
+            </div>
+            <div class="material-badges fade-enter" style="animation-delay:0.02s">
+                ${data.materials.map(m => `<span class="material-badge">${m}</span>`).join("")}
+            </div>
+        </div>
+        
+        <p class="module-desc fade-enter" style="animation-delay:0.1s">${mod.desc}</p>
+        
+        <div class="design-intent fade-enter" style="animation-delay:0.2s">
+            <div class="design-intent-label">✦ 设计意图</div>
+            <div class="design-intent-text">${mod.designIntent}</div>
+        </div>
+        
+        <div class="feature-tags fade-enter" style="animation-delay:0.3s">
+            ${mod.tags.map(tag => `<span class="feature-tag">✦ ${tag}</span>`).join("")}
+        </div>
+        
+        <table class="spec-table fade-enter" style="animation-delay:0.35s">
+            <tr><th colspan="2">规格参数</th></tr>
+            ${data.specs.map(s => `<tr><td>${s[0]}</td><td>${s[1]}</td></tr>`).join("")}
+        </table>
+    `;
+    
+    updateProgress();
+}
+
+function updateProgress() {
+    const data = PRODUCT_DATA[currentSize];
+    const idx = data.modules.findIndex(m => m.id === currentModuleId);
+    const pct = ((idx + 1) / data.modules.length) * 100;
+    document.getElementById("progressBar").style.width = pct + "%";
+}
+
+// ============================================================
+// 事件处理
+// ============================================================
+
+function switchSize(size) {
+    if (size === currentSize) return;
+    currentSize = size;
+    
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.size === size);
+    });
+    
+    currentModuleId = PRODUCT_DATA[size].modules[0].id;
+    
+    renderNav();
+    renderContent();
+}
+
+function switchModule(moduleId) {
+    if (moduleId === currentModuleId) return;
+    currentModuleId = moduleId;
+    
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.toggle("active", item.dataset.id === moduleId);
+    });
+    
+    renderContent();
+}
+
+// 键盘导航
+document.addEventListener("keydown", (e) => {
+    const hint = document.getElementById("kbdHint");
+    const data = PRODUCT_DATA[currentSize];
+    const idx = data.modules.findIndex(m => m.id === currentModuleId);
+    
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        if (idx < data.modules.length - 1) {
+            switchModule(data.modules[idx + 1].id);
+            hint.classList.add("show");
+            setTimeout(() => hint.classList.remove("show"), 1500);
+        }
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (idx > 0) {
+            switchModule(data.modules[idx - 1].id);
+            hint.classList.add("show");
+            setTimeout(() => hint.classList.remove("show"), 1500);
+        }
+    } else if (e.key === "Escape") {
+        hint.classList.remove("show");
+    }
+});
+
+// 初始渲染
+renderNav();
+renderContent();
+</script>
+</body>
+</html>
